@@ -1,0 +1,22 @@
+<div class="todo_container">
+  <header class="header">
+    <span class="todo_title">To - Do  List</span>
+  </header>
+  <ng-container *ngIf="isDataLoaded">
+    <div *ngIf="tasks.length === 0" class="no_task_container" >
+      <h1>შეტყობინება!</h1>
+      <p>სამწუხაროდ დამატებული დავალებები ჯერ არ მოიძებნება.</p>
+    </div>
+    <app-add-task (taskAdded)="onTaskAdded($event)"></app-add-task>
+    <div *ngIf="tasks.length > 0" >
+      <h1>Tasks</h1>
+      <ul>
+        <li *ngFor="let task of tasks">
+          {{ task.name }} {{task.status}}
+          <button (click)="editTask(task)">Edit</button>
+          <button (click)="deleteTask(task)">Delete</button>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+</div>

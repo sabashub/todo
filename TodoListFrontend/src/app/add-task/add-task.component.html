@@ -1,0 +1,13 @@
+<div class="add-task-container">
+  <h2>+ ახალი დავალების დამატება</h2>
+  <div>
+    <input type="text" placeholder="Task name" [(ngModel)]="taskName">
+  </div>
+  <div>
+    <select [(ngModel)]="taskStatus">
+      <option value="finished">Finished</option>
+      <option value="ongoing">Ongoing</option>
+    </select>
+  </div>
+  <button (click)="addTask()">+ დამატება</button>
+</div>

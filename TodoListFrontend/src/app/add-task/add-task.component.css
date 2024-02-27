@@ -1,0 +1,37 @@
+.add-task-container {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.add-task-container h2 {
+  margin-bottom: 10px;
+}
+
+.add-task-container div {
+  margin-bottom: 10px;
+}
+
+.add-task-container input,
+.add-task-container select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.add-task-container button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-task-container button:hover {
+  background-color: #0056b3;
+}

@@ -2,11 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TodoListApi.Models
 {
-    public enum TaskStatus
-    {
-        Finished,
-        Ongoing
-    }
+
 
     public class Task
     {
@@ -16,6 +12,6 @@ namespace TodoListApi.Models
         public string Name { get; set; }
 
         [Required]
-        public TaskStatus Status { get; set; }
+        public String Status { get; set; }
     }
 }
