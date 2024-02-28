@@ -1,0 +1,18 @@
+<div *ngIf="!selectedTask">
+  <app-add-task (taskAdded)="onTaskAdded($event)"></app-add-task>
+</div>
+<div *ngIf="selectedTask">
+  <app-add-task [taskName]="selectedTask.name" [taskStatus]="selectedTask.status" [taskId]="selectedTask.id" (taskAdded)="onTaskAdded($event)"></app-add-task>
+</div>
+
+<div *ngFor="let task of tasks">
+  <div *ngIf="!selectedTask || selectedTask.id !== task.id; else editTaskForm">
+    {{ task.name }} {{ task.status }}
+    <button (click)="editTask(task)">Edit</button>
+    <button (click)="deleteTask(task)">Delete</button>
+  </div>
+</div>
+
+<ng-template #editTaskForm>
+  <!-- This template is handled by the condition in the above div, it's the edit form -->
+</ng-template>

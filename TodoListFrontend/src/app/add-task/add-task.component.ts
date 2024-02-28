@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,31 +10,66 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent {
-  taskName: string = '';
-  taskStatus: string = 'ongoing';
+  @Input() taskName: string = '';
+  @Input() taskStatus: string = 'ongoing';
+  @Input() taskId: number | null = null; // taskId is now an input property
 
   @Output() taskAdded: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) {}
 
   addTask() {
-    const newTask = {
-      id: Math.floor(Math.random() * 1000), // Generate random task ID
+    if (this.taskName && this.taskStatus) {
+      if (this.taskId) {
+        // If taskId is provided, update existing task
+        this.updateTask();
+      } else {
+        // If taskId is not provided, add new task
+        this.createNewTask();
+      }
+    }
+  }
+
+  updateTask() {
+    const updatedTask = {
+      id: this.taskId,
       name: this.taskName,
       status: this.taskStatus
     };
-    
-    // Send POST request to API endpoint
+    this.http.put(`http://localhost:5290/api/tasks/${this.taskId}`, updatedTask)
+      .subscribe(
+        () => {
+          console.log('Task updated successfully');
+          this.taskAdded.emit(updatedTask);
+          this.resetForm();
+        },
+        error => {
+          console.error('Error updating task:', error);
+        }
+      );
+  }
+
+  createNewTask() {
+    const newTask = {
+      name: this.taskName,
+      status: this.taskStatus
+    };
     this.http.post('http://localhost:5290/api/tasks', newTask)
       .subscribe(
         (response: any) => {
-          // Emit the newly added task
-          this.taskAdded.emit(newTask);
-          this.taskName = ''; // Clear the input after adding task
+          console.log('Task added successfully');
+          this.taskAdded.emit(response); // Emit the newly added task
+          this.resetForm();
         },
         (error: any) => {
           console.error('Error adding task:', error);
         }
       );
+  }
+
+  resetForm() {
+    this.taskName = '';
+    this.taskStatus = 'ongoing';
+    this.taskId = null;
   }
 }
