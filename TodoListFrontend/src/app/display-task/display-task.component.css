@@ -1,0 +1,56 @@
+.no_task_container {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #ccc; /* Gray background color */
+  text-align: center;
+}
+
+.no_task_container h1 {
+  color: rgb(225, 100, 100); /* Red color for the first text */
+  font-size: 24px; /* Bigger font size */
+  letter-spacing: 8px;
+}
+
+.no_task_container p.add-task-text {
+  color: black; /* Black color for the second text */
+  font-size: 16px; /* Smaller font size */
+  margin-top: 10px; /* Adjust the top margin */
+}
+
+.add-task {
+  text-align: center; /* Center align the Add Task button */
+}
+.task_sorter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.task_sorter p {
+  flex: 1;
+  text-align: center;
+}
+
+.task_sorter p:nth-child(3) {
+  visibility: hidden;
+}
+
+.task {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: red;
+  margin-bottom: 3px;
+}
+
+.task p {
+  margin: 0;
+  flex: 1;
+  /* text-align: center;  */
+}
+
+.isEditing {
+  color: blue;
+}

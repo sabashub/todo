@@ -1,37 +1,45 @@
 .add-task-container {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
-.add-task-container h2 {
-  margin-bottom: 10px;
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+label {
+  margin-left: 50px;
+  font-size: 15px;
+}
+.dropdown {
+  background-color: white;
+  color: red;
 }
 
-.add-task-container div {
-  margin-bottom: 10px;
+.input_fields {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
 }
 
-.add-task-container input,
-.add-task-container select {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-}
-
-.add-task-container button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
+input,
+select {
+  width: 400px;
+  border-radius: 60px;
   border: none;
-  border-radius: 3px;
-  cursor: pointer;
+  height: 30px;
+  font-size: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 15px;
 }
-
-.add-task-container button:hover {
-  background-color: #0056b3;
+button {
+  width: 300px;
+  border-radius: 30px;
+  border: none;
+  height: 30px;
+  background-color: rgb(57, 57, 85);
+  color: white;
 }

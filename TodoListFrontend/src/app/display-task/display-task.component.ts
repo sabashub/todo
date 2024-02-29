@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit,  } from '@angular/core';
+import { Component, Input, OnInit,  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddTaskComponent } from '../add-task/add-task.component';
@@ -14,8 +14,11 @@ export class DisplayTaskComponent implements OnInit {
   tasks: any[] = [];
   isDataLoaded: boolean = false;
   selectedTask: any | null = null;
-
+  mode: 'add' | 'edit' = 'add';
+  editingTaskIndex: number | null = null;
+   
   constructor(private http: HttpClient) { }
+
 
   ngOnInit(): void {
     this.fetchTasks();
@@ -33,6 +36,9 @@ export class DisplayTaskComponent implements OnInit {
   editTask(task: any) {
     // Set the selected task for editing
     this.selectedTask = task;
+    this.mode = 'edit';
+    this.editingTaskIndex = this.tasks.indexOf(task);
+    
   }
 
   deleteTask(task: any) {
@@ -59,5 +65,7 @@ export class DisplayTaskComponent implements OnInit {
       this.tasks.push(newTask); // Add new task
     }
     this.selectedTask = null; // Reset selected task
+    this.mode = 'add';
+    this.editingTaskIndex = null;
   }
 }

@@ -11,11 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AddTaskComponent {
   @Input() taskName: string = '';
-  @Input() taskStatus: string = 'ongoing';
+  @Input() taskStatus: string = '';
   @Input() taskId: number | null = null; // taskId is now an input property
-
   @Output() taskAdded: EventEmitter<any> = new EventEmitter();
-
+  @Input() mode: 'add' | 'edit' = 'add';
   constructor(private http: HttpClient) {}
 
   addTask() {
