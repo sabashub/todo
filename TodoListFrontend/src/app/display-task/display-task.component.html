@@ -1,32 +1,8 @@
-<div *ngIf="!selectedTask">
-  <div class="no_task_container" >
-    <h1>შეტყობინება!</h1>
-    <p>სამწუხაროდ დამატებული დავალებები ჯერ არ მოიძებნება.</p>
-  </div>
-  <p>✚ ახალი დავალების დამატება</p>
-  <div >
-  <app-add-task (taskAdded)="onTaskAdded($event)"></app-add-task>
-</div>
-<div *ngIf="selectedTask">
-  <app-add-task [taskName]="selectedTask.name" [taskStatus]="selectedTask.status" [taskId]="selectedTask.id" (taskAdded)="onTaskAdded($event)"></app-add-task>
-</div>
-  <div class="task_sorter">
-    <p>მიმდინარე დავალებები</p>
-    <p>სტატუსი</p>
-    <p></p>
-  </div>
-<div *ngFor="let task of tasks">
-  <div *ngIf="!selectedTask || selectedTask.id !== task.id; else editTaskForm">
-    <div class="task">
-      <p>{{task.name}}</p>
-      <p>{{task.status}}</p>
-    <div>
-      <button (click)="editTask(task)">Edit</button>
-      <button (click)="deleteTask(task)">Delete</button>
-    </div>
-    </div>
+<div class="task-list" *ngIf="tasks && tasks.length > 0">
+  <div *ngFor="let task of tasks">
+    <p>{{ task.name }}</p>
+    <p>{{ task.status }}</p>
+    <button (click)="editTask(task)">Edit</button>
+    <button (click)="deleteTask(task.id)">Delete</button>
   </div>
 </div>
-
-<ng-template #editTaskForm>
-</ng-template> 

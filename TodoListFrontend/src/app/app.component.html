@@ -1,9 +1,11 @@
 <div class="todo_container">
   <header class="header">
-    <span class="todo_title">To - Do  List</span>
+    <span class="todo_title">To-Do List</span>
   </header>
-  <ng-container>
-    
-      <app-display-task></app-display-task>
+  <app-add-task [task]="selectedTask" (taskAdded)="fetchTasks()" (editTaskClicked)="fetchTasks()"></app-add-task>
+  <ng-container *ngIf="tasksLoaded">
+    <div>   
+      <app-display-task [tasks]="tasks" (taskToEdit)="editTask($event)"></app-display-task>
+    </div>
   </ng-container>
-</div> 
+</div>

@@ -1,16 +1,13 @@
 <div class="add-task-container">
   <div class="input-container">
-    <label for="taskName">{{ mode === 'edit' ? 'შეცვალეთ დასახელება' : 'შეიყვანეთ დასახელება' }}</label>   
-    <div class="input_fields">
-      <input type="text" id="taskName" placeholder="Task name" [(ngModel)]="taskName"> 
-      
-      <select id="taskStatus" [(ngModel)]="taskStatus" class="dropdown">
-        <option value="">აირჩიეთ დავალების სტატუსი</option>
-        <option value="მიმდინარე">მიმდინარე სტატუსი</option>
-        <option value="დასრულებული">დასრულებული სტატუსი</option>
-      </select>
-
-      <button class="task-button" (click)="addTask()">{{ mode === 'add' ? 'Add Task' : 'Edit Task' }}</button>
-    </div>    
+    <label for="taskName">Task Name</label>
+    <input type="text" id="taskName" [(ngModel)]="taskName">
+    <label for="taskStatus">Task Status</label>
+    <select id="taskStatus" [(ngModel)]="taskStatus">
+      <option value="finished">Finished</option>
+      <option value="ongoing">Ongoing</option>
+    </select>
+    <!-- Check if component is in edit mode to set button text -->
+    <button (click)="addOrEditTask()">{{ isEditMode ? 'Edit' : 'Add' }}</button>
   </div>
 </div>
