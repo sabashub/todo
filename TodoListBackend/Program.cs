@@ -48,7 +48,7 @@ app.UseAuthorization();
 
 app.UseRouting();
 
-// Use CORS
+
 app.UseCors("AllowOrigin");
 
 app.UseEndpoints(endpoints =>

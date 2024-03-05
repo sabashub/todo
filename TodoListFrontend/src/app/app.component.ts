@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   tasksLoaded: boolean = false;
   selectedTask: Task | null = null;
   isEditMode: boolean = false
+  tasksLength: number = this.tasks.length
 
   constructor(private taskService: TaskService) {}
 
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
         // Handle error
       }
     );
+    console.log(this.tasks)
   }
 
   onTaskAdded(task: Task): void {

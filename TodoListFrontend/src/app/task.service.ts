@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Task } from '../models/Task'; // Update the path
+import { Task } from '../models/Task';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:5290/api/tasks'; // Update the API URL
+  private apiUrl = 'http://localhost:5290/api/tasks'; 
 
   constructor(private http: HttpClient) { }
 

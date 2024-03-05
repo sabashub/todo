@@ -14,7 +14,7 @@ namespace TodoListApi.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Add any additional configurations here
+
         }
     }
 }

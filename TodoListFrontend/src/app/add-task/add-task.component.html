@@ -1,13 +1,25 @@
-<div class="add-task-container">
+<div  [ngClass]="nextId == 0 ? 'vertical' : 'horizontal'">
+  <h3 style=" white-space: nowrap; margin-left: 30px;">{{!isEditMode ? '➕ ახალი დავალების დამატება' : '✏️ დავალების რედაქტირება'}}</h3>
   <div class="input-container">
-    <label for="taskName">Task Name</label>
-    <input type="text" id="taskName" [(ngModel)]="taskName">
-    <label for="taskStatus">Task Status</label>
-    <select id="taskStatus" [(ngModel)]="taskStatus">
-      <option value="finished">Finished</option>
-      <option value="ongoing">Ongoing</option>
-    </select>
-    <!-- Check if component is in edit mode to set button text -->
-    <button (click)="addOrEditTask()">{{ isEditMode ? 'Edit' : 'Add' }}</button>
+    <div class="input-row">
+      <label for="taskName">შეიყვანეთ დასახელება</label>
+      <input type="text" id="taskName" [(ngModel)]="taskName">
+    </div>
+    <div class="input-row">
+      <label for="taskStatus">აირჩიეთ დავალების სტატუსი</label>
+      <div class="custom-dropdown">
+        <select id="taskStatus" [(ngModel)]="taskStatus">
+          <option value="დასრულებული" >დასრულებული სტატუსი</option>
+          <option value="მიმდინარე">მიმდინარე სტატუსი</option>
+        </select>
+      </div>
+     
+     
+    </div>
+    
+    <div>
+      <button (click)="addOrEditTask()">{{ isEditMode ? '✐ რედაქტირება' : '✚ დამატება' }}</button>
+    </div>
+    
   </div>
 </div>

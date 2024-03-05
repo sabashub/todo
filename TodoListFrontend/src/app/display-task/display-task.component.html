@@ -1,8 +1,33 @@
 <div class="task-list" *ngIf="tasks && tasks.length > 0">
-  <div *ngFor="let task of tasks">
-    <p>{{ task.name }}</p>
-    <p>{{ task.status }}</p>
-    <button (click)="editTask(task)">Edit</button>
-    <button (click)="deleteTask(task.id)">Delete</button>
+  <div class="task_filter" style="background: rgb(237,234,234);
+  background: linear-gradient(180deg, rgba(237,234,234,1) 18%, rgba(255,255,255,1) 100%);">
+    <h4 style="margin-left: 20px;" ><span style="color: rgb(186, 170, 56)">>></span>  მიმდინარე დავალებები</h4>
+    <h4>სტატუსი</h4>
+    <div></div>
+</div>
+  <div *ngFor="let task of tasks" class="task">
+    <div *ngIf="task.status === 'მიმდინარე'" class="task_details">
+      
+      <p style="margin-left: 20px; width:25%;">{{ task.name }}</p>
+      <p style="color: rgb(228, 196, 36);">{{ task.status }}</p>
+      <div class="buttons">
+        <button class="edit_button" (click)="editTask(task)" [style.backgroundColor]="isEditing(task) ? 'red' : 'blue'">✏️</button>
+        <button class="delete_button" (click)="deleteTask(task.id)">წაშლა</button>
+      </div>
+    </div>
+  </div>
+  <div class="task_filter">
+    <h4 style="margin-left: 20px; "> ✅ დასრულებული დავალებები</h4>
+    <div></div>
+</div>
+  <div *ngFor="let task of tasks" class="task">
+    <div *ngIf="task.status == 'დასრულებული'" class="task_details">
+      <p style="margin-left: 20px; width:27%;">{{ task.name }}</p>
+      <p style="color: green;">{{ task.status }}</p>
+      <div class="buttons">
+        <button class="edit_button"  (click)="editTask(task)" [style.backgroundColor]="isEditing(task) ? 'red' : 'blue'">✏️</button>
+        <button class="delete_button" (click)="deleteTask(task.id)">წაშლა</button>
+      </div>
+    </div>
   </div>
 </div>

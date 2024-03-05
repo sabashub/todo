@@ -1,66 +1,67 @@
-.no_task_container {
-  height: 100px;
-  margin-top: 20px;
+.task-list {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px 0 10px 0;
-  background-color: #ccc; /* Gray background color */
-  text-align: center;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
 }
 
-.no_task_container h1 {
-  color: rgb(225, 100, 100); /* Red color for the first text */
-  font-size: 24px; /* Bigger font size */
-  letter-spacing: 8px;
-}
-
-.no_task_container p.add-task-text {
-  color: black; /* Black color for the second text */
-  font-size: 16px; /* Smaller font size */
-  margin-top: 10px; /* Adjust the top margin */
-}
-
-.add-task {
-  text-align: center; /* Center align the Add Task button */
-}
-.task_sorter {
+.task {
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.task_details {
+  width: 100%;
+  height: 40px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.task_details p {
+  margin: 0;
+  flex-grow: 1;
+}
+.task_filter {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.task_sorter p {
-  flex: 1;
+.task_filter h4 {
   text-align: center;
+
+  box-sizing: border-box;
 }
 
-.task_sorter p:nth-child(3) {
-  visibility: hidden;
-}
-
-.task {
+.buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  background-color: red;
-  margin-bottom: 3px;
+  justify-content: center;
+  margin-right: 40px;
 }
 
-.task p {
-  margin: 0;
-  flex: 1;
-  /* text-align: center;  */
+.edit_button {
+  border-radius: 100%;
+  width: 30px;
+  margin-right: 10px;
+  height: 30px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
 }
-
-.isEditing {
-  color: blue;
-}
-
-.add_task_left {
-  display: flex;
-  flex-direction: row;
+.delete_button {
+  width: 80px;
+  color: white;
+  background-color: rgb(228, 126, 126);
+  height: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
 }

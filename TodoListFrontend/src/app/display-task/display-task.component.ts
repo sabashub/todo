@@ -16,12 +16,14 @@ import { TaskService } from '../task.service';
 export class DisplayTaskComponent {
   @Input() tasks: Task[] = [];
   @Output() taskToEdit: EventEmitter<Task> = new EventEmitter<Task>();
+  editingTaskId: number | null = null;
   
-
   constructor(private taskService: TaskService) {}
 
   editTask(task: Task): void {
-    this.taskToEdit.emit(task);
+    this.editingTaskId = task.id;
+    this.taskToEdit.emit(task); 
+   
   }
 
   deleteTask(taskId: number): void {
@@ -30,4 +32,8 @@ export class DisplayTaskComponent {
       this.tasks = this.tasks.filter(task => task.id !== taskId);
     });
   }
+  isEditing(task: Task): boolean {
+    return this.editingTaskId === task.id;
+  }
+  
 }

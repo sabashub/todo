@@ -1,11 +1,14 @@
-<div class="todo_container">
-  <header class="header">
-    <span class="todo_title">To-Do List</span>
-  </header>
-  <app-add-task [task]="selectedTask" (taskAdded)="fetchTasks()" (editTaskClicked)="fetchTasks()"></app-add-task>
-  <ng-container *ngIf="tasksLoaded">
-    <div>   
-      <app-display-task [tasks]="tasks" (taskToEdit)="editTask($event)"></app-display-task>
+  <div class="todo_container">
+    <header class="header">
+      <span class="todo_title">To-Do List</span>
+    </header>
+    <div class="no_task_container" *ngIf="tasks.length === 0">
+      <h2>შეტყობინება</h2>
+      <h4>სამწუხაროდ დამატებული დავალებები ჯერ არ მოიძებნება</h4>
     </div>
-  </ng-container>
-</div>
+    <app-add-task [task]="selectedTask" (taskAdded)="fetchTasks()" (editTaskClicked)="fetchTasks()"></app-add-task>
+    <ng-container *ngIf="tasksLoaded">
+        <app-display-task [tasks]="tasks" (taskToEdit)="editTask($event)"></app-display-task>
+    </ng-container>
+  </div>
+

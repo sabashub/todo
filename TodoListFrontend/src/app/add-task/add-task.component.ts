@@ -4,25 +4,29 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Task } from '../../models/Task';
 import { TaskService } from '../task.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports:[FormsModule, HttpClientModule],
+  imports:[FormsModule, HttpClientModule, CommonModule],
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnChanges{
   taskName: string = '';
   taskStatus: string = '';
+  tasks: Task[] = [];
   @Input() task: Task | null = null;
   @Output() taskAdded: EventEmitter<Task> = new EventEmitter<Task>();
   @Output() editTaskClicked: EventEmitter<Task | null> = new EventEmitter<Task | null>();
   @Input() isEditMode: boolean = false;
   @Input() selectedTaskToEdit: Task | null = null;
 
+  nextId: number = 0;
+
 
   constructor(private taskService: TaskService) {}
-
+ 
   ngOnChanges(): void {
     if (this.task) {
       this.taskName = this.task.name;
@@ -47,6 +51,7 @@ export class AddTaskComponent implements OnChanges{
           console.log('Task updated successfully:', editedTask);
           this.editTaskClicked.emit(); // Emit event after task is edited
           this.resetForm();
+          this.isEditMode = !this.isEditMode
         },
         (error: any) => {
           console.error('Error updating task:', error);
@@ -55,12 +60,13 @@ export class AddTaskComponent implements OnChanges{
       );
     } else {
       // Adding new task
-      const newTask: Task = { id: 0, name: this.taskName, status: this.taskStatus }; // Assign a unique ID as needed
+      const newTask: Task = { id: this.nextId++, name: this.taskName, status: this.taskStatus }; // Assign a unique ID as needed
       this.taskService.addTask(newTask).subscribe(
         () => {
           console.log('Task added successfully:', newTask);
           this.taskAdded.emit(); // Emit event after task is added
           this.resetForm();
+          
         },
         (error: any) => {
           console.error('Error adding task:', error);
@@ -71,9 +77,11 @@ export class AddTaskComponent implements OnChanges{
   }
 
   resetForm(): void {
+  
     this.task = null;
     this.taskName = '';
     this.taskStatus = '';
   }
+ 
 
 }
